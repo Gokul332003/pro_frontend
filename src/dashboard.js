@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   const fetchSalesData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/sales');
+      const response = await axios.get('https://mern-task-app-api-ik5y.onrender.com/sales');
       setSalesData(response.data);
     } catch (error) {
       console.error('Error fetching sales data:', error);
@@ -53,7 +53,7 @@ const Dashboard = () => {
   };
 
   const handleUpdateQuantity = async (sale, newQuantity) => {
-    const url = `http://localhost:3001/sales/${sale.buyer}/${sale.date}`;
+    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/${sale.date}`;
     try {
       await axios.put(url, {
         quantity: parseFloat(newQuantity),
@@ -83,7 +83,7 @@ const Dashboard = () => {
           await handleUpdateQuantity(existingSale, quantity);
         }
       } else {
-        await axios.post('http://localhost:3001/sales', {
+        await axios.post('https://mern-task-app-api-ik5y.onrender.com/sales', {
           buyer: buyer,
           quantity: quantity,
           date: date,
