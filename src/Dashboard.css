@@ -1,0 +1,98 @@
+.dashboard {
+    background-color: #f8f8f8;
+    padding: 20px;
+  }
+  
+  .dashboard__title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .dashboard__item {
+    flex: 1 1 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard__item-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type='number'],
+  select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .sales-table th,
+  .sales-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .sales-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  .sales-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+
+  .total-row {
+    background-color: #fcebeb;
+    font-weight: bold;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
