@@ -273,8 +273,8 @@ import React from 'react';
 const MaintenanceMessage = () => {
   return (
     <div className="maintenance-message">
-      <h1>Server Under Maintenance</h1>
-      <p>We apologize for the inconvenience. The server is currently undergoing maintenance.</p>
+      <h3>Server Under Maintenance</h3>
+      <p>We apologize for the inconvenience. The server is available from July 1 2023.</p>
     </div>
   );
 };
