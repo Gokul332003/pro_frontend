@@ -9,11 +9,12 @@ const Dashboard = () => {
   const [milkType, setMilkType] = useState('cow');
   const [salesData, setSalesData] = useState([]);
   const [buyersList] = useState([
-    'Bhavani',
-    'Sundari',
-    'Rajeshwari',
-    'Ravi',
-    'Rent',
+    'Anu',
+    'Indra',
+    'Sarida',
+    'EB vidu',
+    'Tupper',
+    'Ivaan vidu'
     // Add more buyer names as needed
   ]);
 
