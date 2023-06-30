@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './login.css'; // Import the CSS file for the Login component
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -16,10 +17,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await axios.post('https://mern-task-app-api-ik5y.onrender.com/users', { username, password });
-  
+      const response = await axios.post('https://mern-task-app-api-ik5y.onrender.com/users', {
+        username,
+        password,
+      });
+
       // Check if login is successful
       if (response.status === 200) {
         // Redirect to Dashboard if login is successful
@@ -32,24 +36,36 @@ const Login = () => {
       setError('Invalid username or password');
     }
   };
-  
+
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={handleUsernameChange} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} />
-        </label>
-        <br />
-        {error && <p>{error}</p>}
-        <button type="submit">Submit</button>
-      </form>
+    <div className="login-container">
+      <div className="login-form">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={handleUsernameChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          {error && <p className="error-message">{error}</p>}
+          <button type="submit" className="submit-button">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };
