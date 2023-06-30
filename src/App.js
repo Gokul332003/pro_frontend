@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="https://milk-pro-sales.netlify.app/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
