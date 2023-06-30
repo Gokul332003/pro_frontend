@@ -23,7 +23,7 @@ const Login = () => {
       // Check if login is successful
       if (response.status === 200) {
         // Redirect to Dashboard if login is successful
-        window.location.href = '/dashboard';
+        window.location.href = 'https://milk-pro-sales.netlify.app/dashboard';
       } else {
         setError('Invalid username or password');
       }
