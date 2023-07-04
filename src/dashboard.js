@@ -1,3 +1,5 @@
+//dashboard.js
+
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import axios from 'axios';
@@ -9,12 +11,11 @@ const Dashboard = () => {
   const [milkType, setMilkType] = useState('cow');
   const [salesData, setSalesData] = useState([]);
   const [buyersList] = useState([
-    'Anu',
-    'Indra',
-    'Sarida',
-    'EB vidu',
-    'Tupper',
-    'Ivaan vidu'
+    'Bhavani',
+    'Sundari',
+    'Rajeshwari',
+    'Ravi',
+    'Rent'
     // Add more buyer names as needed
   ]);
 
@@ -82,7 +83,7 @@ const handleDeleteSale = async (sale) => {
     if (buyer.trim() === '' || quantity === 0 || date.trim() === '') {
       return; // Don't add sale if buyer, quantity, or date is empty
     }
-
+  
     try {
       // Check if an entry already exists for the buyer and date
       const existingSale = salesData.find(
@@ -102,17 +103,17 @@ const handleDeleteSale = async (sale) => {
           date: date,
           milkType: milkType,
         });
-
+  
         setBuyer('');
         setQuantity(0);
         setDate('');
-
+  
         fetchSalesData();
       }
     } catch (error) {
       console.error('Error adding sale:', error);
     }
-  };
+  };  
 
   const calculateAmount = (quantity) => {
     // Replace with your own calculation logic
@@ -283,18 +284,3 @@ const handleDeleteSale = async (sale) => {
 };
 
 export default Dashboard;
-
-
-// import React from 'react';
-
-// const MaintenanceMessage = () => {
-//   return (
-//     <div className="maintenance-message">
-//       <h3>Server Under Maintenance</h3>
-//       <p>We apologize for the inconvenience. The server is available from July 1 2023.</p>
-//     </div>
-//   );
-// };
-
-// export default MaintenanceMessage;
-
