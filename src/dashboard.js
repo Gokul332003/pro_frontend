@@ -133,6 +133,19 @@ const handleDeleteSale = async (sale) => {
     0
   );
 
+  const handleResetSalesData = async () => {
+    if (!buyer) {
+      return; // Only allow resetting sales data when a buyer is selected
+    }
+  
+    try {
+      await axios.delete(`https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`);
+      fetchSalesData();
+    } catch (error) {
+      console.error('Error resetting sales data:', error);
+    }
+  };
+
   return (
     <div className="dashboard">
       <h1 className="dashboard__title">Milk Management Dashboard</h1>
@@ -242,6 +255,9 @@ const handleDeleteSale = async (sale) => {
         {buyer && (
           <div className="dashboard__item">
             <h2 className="dashboard__item-title">Sales Data for {buyer}</h2>
+            <div className="reset-button-container">
+            <button onClick={() => handleResetSalesData(buyer)}>Reset Sales Data</button>
+          </div>
             <table className="sales-table">
               <thead>
                 <tr>
