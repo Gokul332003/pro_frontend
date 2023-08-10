@@ -143,7 +143,7 @@ const handleDeleteSale = async (sale) => {
       return; // Only allow resetting sales data when a buyer is selected
     }
     try {
-      await axios.deleteall(url);
+      await axios.delete(url);
       fetchSalesData();
     } catch (error) {
       console.error('Error resetting sales  sale:', error);
