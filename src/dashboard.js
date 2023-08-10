@@ -1,4 +1,3 @@
-//dashboard.js
 
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
@@ -8,7 +7,6 @@ const Dashboard = () => {
   const [buyer, setBuyer] = useState('');
   const [quantity, setQuantity] = useState(0);
   const [date, setDate] = useState('');
-  const [milkType, setMilkType] = useState('cow');
   const [salesData, setSalesData] = useState([]);
   const [buyersList] = useState([
     'Bhavani',
@@ -48,10 +46,6 @@ const Dashboard = () => {
 
   const handleDateChange = (e) => {
     setDate(e.target.value);
-  };
-
-  const handleMilkTypeChange = (e) => {
-    setMilkType(e.target.value);
   };
   
   // Inside the Dashboard component
@@ -101,7 +95,7 @@ const handleDeleteSale = async (sale) => {
           buyer: buyer,
           quantity: quantity,
           date: date,
-          milkType: milkType,
+        //  milkType: milkType,
         });
   
         setBuyer('');
@@ -117,7 +111,7 @@ const handleDeleteSale = async (sale) => {
 
   const calculateAmount = (quantity) => {
     // Replace with your own calculation logic
-    const pricePerLiter = milkType === 'cow' ? 45 : 70;
+    const pricePerLiter = 45;
     return quantity * pricePerLiter;
   };
 
@@ -133,19 +127,29 @@ const handleDeleteSale = async (sale) => {
     0
   );
 
-  const handleResetSalesData = async () => {
+  // const handleResetSalesData = async () => {
+   
+  //   try {
+  //     await axios.delete(`https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`);
+  //     fetchSalesData();
+  //   } catch (error) {
+  //     console.error('Error resetting sales data:', error);
+  //   }
+  // };
+
+  const handleResetSalesData = async (sale) => {
+    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/reset`;
     if (!buyer) {
       return; // Only allow resetting sales data when a buyer is selected
     }
-  
     try {
-      await axios.delete(`https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`);
+      await axios.deleteall(url);
       fetchSalesData();
     } catch (error) {
-      console.error('Error resetting sales data:', error);
+      console.error('Error resetting sales  sale:', error);
     }
   };
-
+  
   return (
     <div className="dashboard">
       <h1 className="dashboard__title">Milk Management Dashboard</h1>
@@ -176,13 +180,8 @@ const handleDeleteSale = async (sale) => {
             </div>
             <div className="form-group">
               <label htmlFor="milkType">Milk Type:</label>
-              <select
-                id="milkType"
-                value={milkType}
-                onChange={handleMilkTypeChange}
-              >
+              <select id="milkType">
                 <option value="cow">Cow Milk</option>
-                <option value="buffalo">Buffalo Milk</option>
               </select>
             </div>
             <div className="form-group">
@@ -279,6 +278,7 @@ const handleDeleteSale = async (sale) => {
                 </tr>
               ))}
             </tbody>
+
               <tfoot>
                 <tr>
                   <td colSpan="3">
