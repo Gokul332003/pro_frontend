@@ -127,26 +127,17 @@ const handleDeleteSale = async (sale) => {
     0
   );
 
-  // const handleResetSalesData = async () => {
-   
-  //   try {
-  //     await axios.delete(`https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`);
-  //     fetchSalesData();
-  //   } catch (error) {
-  //     console.error('Error resetting sales data:', error);
-  //   }
-  // };
-
-  const handleResetSalesData = async (sale) => {
-    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/reset`;
+  const handleResetSalesData = async () => {
     if (!buyer) {
       return; // Only allow resetting sales data when a buyer is selected
     }
+  
+    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`;
     try {
       await axios.delete(url);
       fetchSalesData();
     } catch (error) {
-      console.error('Error resetting sales  sale:', error);
+      console.error('Error resetting sales data:', error);
     }
   };
   
@@ -193,7 +184,6 @@ const handleDeleteSale = async (sale) => {
                 onChange={handleDateChange}
               />
             </div>
-
             <button type="button" onClick={handleAddSale}>
               Add Sale
             </button>
@@ -278,7 +268,6 @@ const handleDeleteSale = async (sale) => {
                 </tr>
               ))}
             </tbody>
-
               <tfoot>
                 <tr>
                   <td colSpan="3">
