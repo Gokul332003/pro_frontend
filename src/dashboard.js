@@ -14,7 +14,6 @@ const Dashboard = () => {
     'Rajeshwari',
     'Ravi',
     'Rent'
-    // Add more buyer names as needed
   ]);
 
   useEffect(() => {
@@ -47,8 +46,6 @@ const Dashboard = () => {
   const handleDateChange = (e) => {
     setDate(e.target.value);
   };
-  
-  // Inside the Dashboard component
 
 const handleDeleteSale = async (sale) => {
   const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/${sale.date}`;
@@ -126,12 +123,10 @@ const handleDeleteSale = async (sale) => {
     (total, sale) => total + calculateAmount(sale.quantity),
     0
   );
-
   const handleResetSalesData = async () => {
     if (!buyer) {
-      return; // Only allow resetting sales data when a buyer is selected
+      return; 
     }
-  
     const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`;
     try {
       await axios.delete(url);
@@ -146,7 +141,7 @@ const handleDeleteSale = async (sale) => {
       <h1 className="dashboard__title">Milk Management Dashboard</h1>
       <div className="dashboard__content">
         <div className="dashboard__item">
-          <h2 className="dashboard__item-title">Add Milk Sale</h2>
+        <h2 className="dashboard__item-title">Add Milk Sale</h2>
           <form>
             <div className="form-group">
               <label htmlFor="buyer">Buyer:</label>
@@ -191,7 +186,7 @@ const handleDeleteSale = async (sale) => {
         </div>
         {!buyer && (
           <div className="dashboard__item">
-            <h2 className="dashboard__item-title">Overall Sales Summary</h2>
+          <h2 className="dashboard__item-title">Overall Sales Summary</h2>
             <table className="sales-table">
               <thead>
                 <tr>
@@ -241,12 +236,14 @@ const handleDeleteSale = async (sale) => {
             </table>
           </div>
         )}
+
         {buyer && (
           <div className="dashboard__item">
             <h2 className="dashboard__item-title">Sales Data for {buyer}</h2>
             <div className="reset-button-container">
             <button onClick={() => handleResetSalesData(buyer)}>Reset Sales Data</button>
           </div>
+          
             <table className="sales-table">
               <thead>
                 <tr>
@@ -284,6 +281,26 @@ const handleDeleteSale = async (sale) => {
           </div>
         )}
       </div>
+      
+      <div className="billing-section">
+        <h2 className="billing-title">Billing Information</h2>
+        {buyer && (
+          <div className="billing-data">
+            <span className="billing-label">Total Liters Purchased:</span>
+            <span className="billing-amount">{totalLitersPurchased}</span>
+          </div>
+        )}
+        {buyer && (
+          <div className="billing-data">
+            <span className="billing-label">Total Amount Purchased:</span>
+            <span className="billing-amount">{totalAmountPurchased}</span>
+          </div>
+        )}
+      </div>
+      
+      <footer className="footer">
+        &copy; {new Date().getFullYear()} Milk Management Dashboard. All rights reserved.
+      </footer>
     </div>
   );
 };
