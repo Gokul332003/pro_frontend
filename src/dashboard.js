@@ -13,7 +13,6 @@ const Dashboard = () => {
     'Sundari',
     'Rajeshwari',
     'Ravi',
-    'Rent'
   ]);
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const Dashboard = () => {
 
   const fetchSalesData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/sales');
+      const response = await axios.get('https://mern-task-app-api-ik5y.onrender.com/sales');
       setSalesData(response.data);
     } catch (error) {
       console.error('Error fetching sales data:', error);
@@ -48,7 +47,7 @@ const Dashboard = () => {
   };
   
   const handleDeleteSale = async (sale) => {
-    const url = `http://localhost:3001/sales/${sale.buyer}/${sale.date}`;
+    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/${sale.date}`;
     try {
       await axios.delete(url);
       fetchSalesData();
@@ -61,7 +60,7 @@ const handleResetSalesData = async (buyer, date) => {
   // Format the date as an ISO 8601 string
   const formattedDate = date.toISOString();
 
-  const url = `http://localhost:3001/sales/reset/${buyer}/${formattedDate}`;
+  const url = `https://mern-task-app-api-ik5y.onrender.com/sales/reset/${buyer}/${formattedDate}`;
   try {
     await axios.delete(url);
     fetchSalesData();
@@ -71,7 +70,7 @@ const handleResetSalesData = async (buyer, date) => {
 };
 
 const handleUpdateQuantity = async (sale, newQuantity) => {
-    const url = `http://localhost:3001/sales/${sale.buyer}/${sale.date}`;
+    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/${sale.date}`;
     try {
       await axios.put(url, {
         quantity: parseFloat(newQuantity),
@@ -101,7 +100,7 @@ const handleUpdateQuantity = async (sale, newQuantity) => {
           await handleUpdateQuantity(existingSale, quantity);
         }
       } else {
-        await axios.post('http://localhost:3001/sales', {
+        await axios.post('https://mern-task-app-api-ik5y.onrender.com/sales', {
           buyer: buyer,
           quantity: quantity,
           date: date,
