@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const fetchSalesData = async () => {
     try {
-      const response = await axios.get('https://mern-task-app-api-ik5y.onrender.com/sales');
+      const response = await axios.get('http://localhost:3001/sales');
       setSalesData(response.data);
     } catch (error) {
       console.error('Error fetching sales data:', error);
@@ -46,19 +46,32 @@ const Dashboard = () => {
   const handleDateChange = (e) => {
     setDate(e.target.value);
   };
-
-const handleDeleteSale = async (sale) => {
-  const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/${sale.date}`;
-  try {
-    await axios.delete(url);
-    fetchSalesData();
+  
+  const handleDeleteSale = async (sale) => {
+    const url = `http://localhost:3001/sales/${sale.buyer}/${sale.date}`;
+    try {
+      await axios.delete(url);
+      fetchSalesData();
   } catch (error) {
     console.error('Error deleting sale:', error);
   }
 };
 
-  const handleUpdateQuantity = async (sale, newQuantity) => {
-    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${sale.buyer}/${sale.date}`;
+const handleResetSalesData = async (buyer, date) => {
+  // Format the date as an ISO 8601 string
+  const formattedDate = date.toISOString();
+
+  const url = `http://localhost:3001/sales/reset/${buyer}/${formattedDate}`;
+  try {
+    await axios.delete(url);
+    fetchSalesData();
+  } catch (error) {
+    console.error('Error resetting sales data:', error);
+  }
+};
+
+const handleUpdateQuantity = async (sale, newQuantity) => {
+    const url = `http://localhost:3001/sales/${sale.buyer}/${sale.date}`;
     try {
       await axios.put(url, {
         quantity: parseFloat(newQuantity),
@@ -88,7 +101,7 @@ const handleDeleteSale = async (sale) => {
           await handleUpdateQuantity(existingSale, quantity);
         }
       } else {
-        await axios.post('https://mern-task-app-api-ik5y.onrender.com/sales', {
+        await axios.post('http://localhost:3001/sales', {
           buyer: buyer,
           quantity: quantity,
           date: date,
@@ -123,18 +136,6 @@ const handleDeleteSale = async (sale) => {
     (total, sale) => total + calculateAmount(sale.quantity),
     0
   );
-  const handleResetSalesData = async () => {
-    if (!buyer) {
-      return; 
-    }
-    const url = `https://mern-task-app-api-ik5y.onrender.com/sales/${buyer}/reset`;
-    try {
-      await axios.delete(url);
-      fetchSalesData();
-    } catch (error) {
-      console.error('Error resetting sales data:', error);
-    }
-  };
   
   return (
     <div className="dashboard">
@@ -241,7 +242,7 @@ const handleDeleteSale = async (sale) => {
           <div className="dashboard__item">
             <h2 className="dashboard__item-title">Sales Data for {buyer}</h2>
             <div className="reset-button-container">
-            <button onClick={() => handleResetSalesData(buyer)}>Reset Sales Data</button>
+            <button onClick={() => handleResetSalesData(buyer, new Date())}>Reset Sales Data</button>
           </div>
           
             <table className="sales-table">
@@ -281,23 +282,6 @@ const handleDeleteSale = async (sale) => {
           </div>
         )}
       </div>
-      
-      <div className="billing-section">
-        <h2 className="billing-title">Billing Information</h2>
-        {buyer && (
-          <div className="billing-data">
-            <span className="billing-label">Total Liters Purchased:</span>
-            <span className="billing-amount">{totalLitersPurchased}</span>
-          </div>
-        )}
-        {buyer && (
-          <div className="billing-data">
-            <span className="billing-label">Total Amount Purchased:</span>
-            <span className="billing-amount">{totalAmountPurchased}</span>
-          </div>
-        )}
-      </div>
-      
       <footer className="footer">
         &copy; {new Date().getFullYear()} Milk Management Dashboard. All rights reserved.
       </footer>

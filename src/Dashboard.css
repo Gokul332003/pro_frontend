@@ -306,39 +306,6 @@ button:hover {
   margin-top: 20px;
 }
 
-/* Style for the billing section */
-.billing-section {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f9f9f9; /* Light gray background */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-}
-
-/* Style for billing title */
-.billing-title {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-/* Style for billing data */
-.billing-data {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-/* Style for billing label */
-.billing-label {
-  font-weight: bold;
-}
-
-/* Style for billing amount */
-.billing-amount {
-  color: #007bff; /* Blue text color */
-}
-
 /* Style for footer */
 .footer {
   text-align: center;
